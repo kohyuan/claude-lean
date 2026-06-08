@@ -1,0 +1,7 @@
+# Never commit sensitive Claude config
+claude/settings.local.json
+**/.env
+**/.env.*
+**/*.key
+**/*.pem
+.DS_Store
