@@ -1,60 +1,30 @@
 {
   "permissions": {
-      "allow": [
-        "Read",
-        "Glob",
-        "Grep",
-        "LS",
-        "Bash(git status)",
-        "Bash(git diff:*)",
-        "Bash(git log:*)",
-        "Bash(git branch:*)"
-      ],
-      "deny": [
-        "Read(./.env)",
-        "Read(./.env.*)",
-        "Read(./secrets/**)",
-        "Write(./.env)",
-        "Write(./.env.*)",
-        "Bash(rm -rf:*)",
-        "Bash(sudo:*)",
-        "Bash(chmod:*)",
-        "Bash(chown:*)",
-        "Bash(wget:*)",
-        "Bash(curl:*)",
-        "Bash(docker:*)",
-        "Bash(npm publish:*)",
-        "Bash(git push:*)"
+    "allow": [
+      "Read",
+      "Glob",
+      "Grep",
+      "LS",
+      "Bash(git status)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git branch:*)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./secrets/**)",
+      "Write(./.env)",
+      "Write(./.env.*)",
+      "Bash(rm -rf:*)",
+      "Bash(sudo:*)",
+      "Bash(chmod:*)",
+      "Bash(chown:*)",
+      "Bash(wget:*)",
+      "Bash(curl:*)",
+      "Bash(docker:*)",
+      "Bash(npm publish:*)",
+      "Bash(git push:*)"
     ]
-  },
-  "statusLine": {
-    "type": "command",
-    "command": "bash -c 'plugin_dir=$(ls -d \"${CLAUDE_CONFIG_DIR:-$HOME/.claude}\"/plugins/cache/claude-hud/claude-hud/*/ 2>/dev/null | awk -F/ '\"'\"'{ print $(NF-1) \"\\t\" $(0) }'\"'\"' | sort -t. -k1,1n -k2,2n -k3,3n -k4,4n | tail -1 | cut -f2-); exec \"/Users/koh/.nvm/versions/node/v24.14.0/bin/node\" \"${plugin_dir}dist/index.js\"'"
-  },
-  "enabledPlugins": {
-    "superpowers@claude-plugins-official": true,
-    "claude-hud@claude-hud": true,
-    "frontend-design@claude-plugins-official": true,
-    "caveman@caveman": true
-  },
-  "extraKnownMarketplaces": {
-    "claude-hud": {
-      "source": {
-        "source": "github",
-        "repo": "jarrodwatts/claude-hud"
-      }
-    },
-    "claude-code-plugins": {
-      "source": {
-        "source": "github",
-        "repo": "anthropics/claude-code"
-      }
-    },
-    "caveman": {
-      "source": {
-        "source": "github",
-        "repo": "JuliusBrussee/caveman"
-      }
-    }
   }
 }

@@ -38,6 +38,27 @@ backed up too). Restart Claude Code afterward.
 To undo: delete the files this added from `~/.claude/`, and restore from the
 backup folder if needed.
 
+## Plugins (optional)
+
+The baseline does **not** enable any plugins for you — that's a deliberate part
+of staying lean. But if you want the plugin set I use, there's an opt-in script:
+
+```bash
+./install-plugins.sh
+```
+
+It asks for confirmation, then installs:
+
+- [caveman](https://github.com/JuliusBrussee/caveman) — terse "caveman-speak" output to cut tokens
+- [claude-hud](https://github.com/jarrodwatts/claude-hud) — a status-line HUD
+- `superpowers` — workflow plugin (official marketplace)
+- `frontend-design` — frontend/UI design guidance (official marketplace)
+
+Requires the `claude` CLI on your PATH. Note these are third-party / external
+plugins; installing them pulls code you should be comfortable trusting. You can
+always install or remove individual plugins yourself with `/plugin` inside
+Claude Code.
+
 ## Update your shared copy (for the maintainer)
 
 If you change your own `~/.claude/` and want the repo to match:
@@ -47,7 +68,10 @@ If you change your own `~/.claude/` and want the repo to match:
 git add -A && git commit -m "Update setup" && git push
 ```
 
-`pack.sh` copies only `settings.json`, `CLAUDE.md`, `skills/`, and `commands/`.
+`pack.sh` copies only the `permissions` block of `settings.json`, plus
+`CLAUDE.md`, `skills/`, and `commands/`. Your personal `statusLine`,
+`enabledPlugins`, and `extraKnownMarketplaces` stay on your machine and are
+never pushed.
 
 ## Security
 
@@ -60,7 +84,7 @@ and keep the provided `.gitignore` in place.
 
 - The `settings.json` deny list is opinionated (blocks `curl`, `git push`, etc.).
   Adjust to taste — move items from `deny` to an `ask` list, or remove them.
-- Skills and commands are the parts that could *also* be shipped as a Claude Code
-  plugin (`/plugin install`). The global `settings.json` and `CLAUDE.md` cannot
-  be distributed via a plugin, which is why this repo uses an install script to
+- Skills and commands could *also* be shipped as a Claude Code plugin
+  (`/plugin install`). The global `settings.json` and `CLAUDE.md` cannot be
+  distributed via a plugin, which is why this repo uses an install script to
   cover everything in one place.
